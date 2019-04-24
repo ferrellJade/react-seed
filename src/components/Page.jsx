@@ -6,6 +6,6 @@ export default class Page extends Component {
             <div className="Page">
                 8888888888888888888888888
             </div>
-        )
+        );
     }
 }

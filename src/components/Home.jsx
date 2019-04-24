@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import imageJpg from '../images/sbBoy.jpg';
-import { Link } from 'react-router-dom'
+import { Link } from 'react-router-dom';
 export default class Home extends Component {
     render() {
         return (
@@ -14,6 +14,6 @@ export default class Home extends Component {
                 </div>
                 <div className="title">I am ferrell</div>
             </div>
-        )
+        );
     }
 }
