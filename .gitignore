@@ -1,0 +1,10 @@
+/node_modules
+/build
+/dist
+/bin/*.log
+/.idea
+/.settings
+/*.log
+*.iml
+*.project
+.DS_STORE

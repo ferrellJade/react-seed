@@ -1,0 +1,13 @@
+@mixin bg {
+    width: 300px;
+    height: 200px;
+}
+.title {
+    color: red;
+    background: blue;
+    @include bg;
+}
+.home {
+    width: 200px;
+    height: 100px;
+}
