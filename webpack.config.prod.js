@@ -17,7 +17,7 @@ module.exports = webpackMerge(baseConfig, {
             use: [{
                 loader: 'eslint-loader',
                 options: {
-                    configFile: '.eslintrc.json'
+                    configFile: '.eslintrc.prod.json'
                 }
             }]
         }]

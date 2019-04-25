@@ -30,13 +30,7 @@ module.exports = {
                 test: /\.(js|jsx)$/,
                 exclude: /node_modules/,
                 use: {
-                    loader: 'babel-loader',
-                    options: {
-                        // presets: ['@babel/preset-env', '@babel/react'],
-                        // plugins: [
-                        //     [require('@babel/plugin-proposal-decorators'), { 'legacy': true }]
-                        // ]
-                    }
+                    loader: 'babel-loader'
                 }
             }, {
                 test: /\.(css|scss)$/,
