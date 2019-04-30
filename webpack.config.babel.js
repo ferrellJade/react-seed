@@ -4,6 +4,7 @@ const path = require('path');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 // const WebpackMd5Hash = require('webpack-md5-hash');
+const devMode = process.env.NODE_ENV === 'production';
 
 const STATIC_PATH = 'static';
 
@@ -34,12 +35,12 @@ module.exports = {
                 }
             }, {
                 test: /\.(css|scss)$/,
-                use: [   
-                    'style-loader', 
+                use: devMode ? [   
                     MiniCssExtractPlugin.loader, 
                     'css-loader', 'postcss-loader', 
                     'sass-loader'
-                ]
+                ] : ['style-loader', 'css-loader', 'postcss-loader', 
+                'sass-loader']
             }, {
                 test: /\.(woff|eot|ttf|js|svg)$/,
                 include: path.join(__dirname, 'src/fonts'),
@@ -87,7 +88,7 @@ module.exports = {
             filename: 'index.html'
         }),
         new MiniCssExtractPlugin({
-            filename: `${STATIC_PATH}/css/[name].[contenthash:5].css`
+            filename: devMode ? `${STATIC_PATH}/css/[contenthash:5].css` : '[id].css'
         }),
         new OptimizeCSSAssetsPlugin({
             assetNameRegExp: /\.css$/g,

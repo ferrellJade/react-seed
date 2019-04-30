@@ -6,7 +6,6 @@ server.listen(8000, function(err, result) {
     if (err) {
         return console.log(err);
     }
-    console.log('Listening at http://127.0.0.1:8000/');
 });
 
 server.use(mockFactory({
