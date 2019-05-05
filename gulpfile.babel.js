@@ -15,11 +15,12 @@ const PASSWORD = 'ffee3443443636';                                // 静态资�
 const DEV_RELEASE_PATH = '/xxx/xxx/xxx';                // DEV静态资源存放到服务器的路径
 const PROD_RELEASE_PATH = '/xxx/xxx/xxx';               // 生产环境静态资源存放到服务器的路径
 const TIMEOUT = 60000;                                  // 请求服务器超时时间, 1分钟.
+const sass = require('gulp-sass');
 
 // 清除dist目录
-gulp.task('clean', () => {
-    return del([DIST_PATH]);
-});
+// gulp.task('clean', () => {
+//     return del([DIST_PATH]);
+// });
 // 文件打包
 gulp.task('package', ['clean'], () => {
     return gulp.src(`${BUILD_PATH}/**`)
