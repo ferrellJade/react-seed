@@ -1,8 +1,8 @@
 import 'antd/dist/antd.min.css';
-// import './styles/main.scss';
-// import './styles/common.scss';
-// import './styles/btn.scss';
-// import './styles/reset.scss';
+import './styles/main.scss';
+import './styles/common.scss';
+import './styles/btn.scss';
+import './styles/reset.scss';
 import React from 'react';
 import Root from './router/Root';
 import { render } from 'react-dom';

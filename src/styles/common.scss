@@ -1,0 +1,49 @@
+/* 公用样式 */
+
+:global {
+    table {
+        table-layout: fixed;
+    }
+
+    .fl {
+        float: left;
+    }
+    .fr {
+        float: right;
+    }
+    .alignL {
+        text-align: left;
+    }
+
+    .alignC {
+        text-align: center;
+    }
+
+    .alignR {
+        text-align: right;
+    }
+
+    .base-panel {
+        padding: 0 20px;
+        background: #fff;
+        overflow: hidden;
+        box-shadow: 0 0 10px rgba(144, 172, 224, 0.12);
+        margin-bottom: 20px;
+    }
+
+    .btn-group {
+        .btn {
+            margin-right: 20px;
+        }
+    }
+
+    .operation {
+        a:not(:last-child) {
+            margin-right: 15px;
+        }
+    }
+    
+    .red-font {
+        color: #D73128;
+    }
+}
