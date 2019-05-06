@@ -3,7 +3,6 @@ const path = require('path');
 const webpack = require('webpack');
 const webpackMerge = require('webpack-merge');
 const baseConfig = require('./webpack.config.babel');
-// const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin');
 const UglifyJsPlugin = require('uglifyjs-webpack-plugin')
 const CleanWebpackPlugin = require('clean-webpack-plugin');
@@ -41,7 +40,7 @@ module.exports = webpackMerge(baseConfig, {
                     name: "vendors",
                     chunks: "all",
                     priority: -10
-                },
+                }
                 // css: {
                 //     name: `${STATIC_PATH}/css/styles.css`,
                 //     test: /\.(scss|css)$/,
@@ -74,10 +73,6 @@ module.exports = webpackMerge(baseConfig, {
                 },
                 canPrint: true
             })
-            // new OptimizeCSSAssetsPlugin({
-            //     // 采用了文件名后接查询参数的方式解决缓存问题，在打包的时候，css压缩找不到正确的文件名了，需要重新配置规则
-            //     assetNameRegExp: /\.css\?_=[a-z0-9]*$/g
-            // })
         ]
     },
     plugins: [

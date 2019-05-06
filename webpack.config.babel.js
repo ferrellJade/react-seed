@@ -1,15 +1,16 @@
 
 const path = require('path');
 const webpack = require('webpack');
+const precss = require('precss');
+const autoprefixer = require('autoprefixer');
 
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
-// const WebpackMd5Hash = require('webpack-md5-hash');
 const devMode = process.env.NODE_ENV === 'production';
 
 const STATIC_PATH = 'static';
-console.log('99999999999999999999999', process.env.NODE_ENV,  devMode);
+
 module.exports = {
     entry: { main: './src/index.jsx' },
     output: {
@@ -100,6 +101,14 @@ module.exports = {
         new MiniCssExtractPlugin({
             filename: devMode ? `${STATIC_PATH}/css/[contenthash:5].css` : '[id].css'
         }),
+        new webpack.LoaderOptionsPlugin({
+            minimize: true,                             // 压缩loader读取的文件
+            options: {
+                postcss: function () {
+                    return [precss, autoprefixer];
+                }
+            }
+        })
         // new OptimizeCSSAssetsPlugin({
         //     assetNameRegExp: /\.css$/g,
         //     cssProcessor: require('cssnano'),
