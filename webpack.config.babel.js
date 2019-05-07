@@ -1,11 +1,13 @@
 
 const path = require('path');
 const glob = require('glob');
-    const PurifyCssPlugin = require('purifycss-webpack');
+
+const PurifyCssPlugin = require('purifycss-webpack');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
-const UglifyJsPlugin = require('uglifyjs-webpack-plugin')
+const CaseSensitivePathsPlugin = require('case-sensitive-paths-webpack-plugin');
+const CopyWebpackPlugin = require('copy-webpack-plugin');
 const devMode = process.env.NODE_ENV === 'production';
 
 const STATIC_PATH = 'static';
@@ -13,13 +15,12 @@ const STATIC_PATH = 'static';
 module.exports = {
     entry: { 
         main: './src/index.jsx',
-        vendor: ['react', 'react-dom', 'react-router', 'babel-polyfill', 'react-css-modules'],
-        map: ['echarts/map/js/china']
+        vendor: ['react', 'react-dom', 'react-router', 'babel-polyfill', 'react-css-modules']
     },
     output: {
         publicPath: '/',
         path: path.join(__dirname, 'dist'),
-        filename: `${STATIC_PATH}/js/[contenthash].[name].js`
+        filename: `${STATIC_PATH}/js/[name].[contenthash:5].js`
     },
     resolve: {
         alias: {
@@ -35,7 +36,7 @@ module.exports = {
                 test: /\.(js|jsx)$/,
                 include: path.join(__dirname, 'src'),
                 exclude: path.join(__dirname, 'src/fonts'),
-                use: ['babel-loader']
+                use: ['babel-loader', 'lazyload-loader']
             }, {
                 test: /\.css$/,
                 use: devMode ? [
@@ -90,37 +91,6 @@ module.exports = {
                 ]
             }]
     },
-    optimization: {
-        runtimeChunk: {
-            name: STATIC_PATH
-        },
-        minimizer: [
-            // 对js文件进行压缩,在output之中设置了filename和chunkFilename之后，webpack4的默认压缩就无效了
-            new UglifyJsPlugin({
-                cache: true,
-                test: /\.js($|\?)/i,
-                parallel: true, // 启用多线程并行运行提高编译速度
-                minify(file, sourceMap) {
-                    const uglifyJsOptions = {
-                        mangle: true, 
-                        output: {
-                            comments: false  // 删掉所有注释
-                        },
-                        compress: {
-                            drop_console: true // 过滤console,即使写了console,线上也不显示
-                        }
-                    };
-            
-                    if (sourceMap) {
-                        uglifyJsOptions.sourceMap = {
-                            content: sourceMap,
-                        };
-                    }
-                    return require('terser').minify(file, uglifyJsOptions);
-                }
-            })
-        ]
-    },
     plugins: [
         new HtmlWebpackPlugin({
             template: './src/index.html',
@@ -129,7 +99,10 @@ module.exports = {
             minify: {
                 removeComments: true, // 移除注释
                 collapseWhitespace: true, // 合并多余空格
-                removeAttributeQuotes: true // 移除分号
+                removeAttributeQuotes: true, // 移除分号
+                minifyJS: true,
+                minifyCSS: true,
+                minifyURLs: true
             },
             chunksSortMode: 'dependency'
         }),
@@ -151,6 +124,19 @@ module.exports = {
               }]
             },
             canPrint: true  // 是否打印编译过程中的日志
-        })
+        }),
+        new CopyWebpackPlugin([
+            {
+                from: __dirname + '/src/fonts',
+                to: `${STATIC_PATH}/fonts/`,
+                toType: 'dir'
+            },
+            {
+                from: __dirname + '/src/antdFont',
+                to: `${STATIC_PATH}/antdFont/`,
+                toType: 'dir'
+            }
+        ]),
+        new CaseSensitivePathsPlugin()
     ]
 };
