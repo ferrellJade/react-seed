@@ -1,4 +1,4 @@
-import 'antd/dist/antd.min.css';
+// import 'antd/dist/antd.min.css';
 import './styles/main.scss';
 import './styles/common.scss';
 import './styles/btn.scss';

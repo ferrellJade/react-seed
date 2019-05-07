@@ -1,4 +1,4 @@
 {
     "presets": ["latest", "react", "es2015", "stage-0"],
-    "plugins": []
+    "plugins": [["import", { "libraryName": "antd", "libraryDirectory": "es", "style": "css" }]]
 }

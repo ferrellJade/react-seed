@@ -1,5 +1,5 @@
 {
-    "plugins": ["react"],
+    "plugins": ["react", "babel"],
     "parser": "babel-eslint",
     "parserOptions": {
         "ecmaVersion": 6,
@@ -16,6 +16,7 @@
         "commonjs": true
     },
     "extends": [
+        "eslint:recommended",
         "plugin:react/recommended"
     ],
     "rules": {
