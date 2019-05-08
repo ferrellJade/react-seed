@@ -8,9 +8,9 @@ import HooksTest from './testHooks/TestOne';
 export default class Home extends Component {
     render() {
         return (
-            <div>
+            <div className={styles.marginLeft}>
+                <HooksTest />
                 <div>
-                    <HooksTest />
                     <img className={styles.home} src={imageJpg} />
                     <Button type="primary"><Link to="/page">Page</Link></Button>
                 </div>

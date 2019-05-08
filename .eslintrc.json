@@ -1,5 +1,5 @@
 {
-    "plugins": ["react", "babel"],
+    "plugins": ["react", "babel", "react-hooks"],
     "parser": "babel-eslint",
     "parserOptions": {
         "ecmaVersion": 6,
@@ -74,6 +74,8 @@
         "react/no-multi-comp": "off",
         "react/no-string-refs": "error",
         "react/no-unused-prop-types": "error",
+        "react-hooks/rules-of-hooks": "off",
+        "react-hooks/exhaustive-deps": "warn",
         "react/prefer-es6-class": "off",
         "react/prop-types": "off",
         "react/display-name": "off",
